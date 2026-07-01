@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import Navbar from '@/components/Navbar'
 
 const SECTIONS = [
   { id: 'intro', label: 'How I got here' },
   { id: 'tenx', label: '10x Health' },
   { id: 'hntb', label: 'HNTB' },
   { id: 'craft', label: 'How I work' },
+  { id: 'looking', label: 'What I want' },
 ]
 
 export default function Experience() {
@@ -29,6 +31,7 @@ export default function Experience() {
 
   return (
     <>
+      <Navbar />
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -109,7 +112,7 @@ export default function Experience() {
         <main className="main">
           <div className="wrap">
 
-            <div id="intro" className="block">
+            <div id="intro" className="block" style={{ paddingTop: 80 }}>
               <p className="eyebrow">How I got here</p>
               <p className="narrative">
                 I studied Information Technology and Systems at UT Dallas, which gave me just enough technical grounding to be dangerous in a product role. I understood how systems were built, which meant I could sit with engineers and talk through the details rather than hand over a document and hope for the best.
@@ -118,7 +121,7 @@ export default function Experience() {
                 What pulled me toward product management was not a plan. It was a pattern I kept noticing. In every room I was in, there was always a missing piece, something nobody had said yet that changed the whole picture once it was named. I realized at some point that finding that piece and doing something useful with it was what I actually wanted to spend my time on. Product management was the role that made that the job.
               </p>
               <p className="narrative">
-                I started in transit technology at a large government agency, where I learned that stakeholder alignment is its own engineering problem. Then moved into healthtech, where I learned what it actually means to build from scratch with real stakes. Those two environments shaped everything about how I work.
+                I started in transit technology at a large government agency in Washington DC, where I learned that stakeholder alignment is its own engineering problem. Then moved into healthtech, where I learned what it actually means to build from scratch with real stakes. Those two environments shaped everything about how I work.
               </p>
             </div>
 
@@ -226,6 +229,19 @@ export default function Experience() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div id="looking" className="block">
+              <p className="eyebrow">What I want</p>
+              <p className="narrative">
+                I am looking for product management roles where the work is genuinely hard and the environment does not have all the answers yet. Forward deployed and AI product roles interest me specifically because they put you directly inside a customer&apos;s environment, which is where the real problems live.
+              </p>
+              <p className="narrative">
+                I do some of my best work when there is no playbook. Not because I enjoy chaos but because I am good at building structure in environments that do not have it yet. I would like to keep doing that at a company where the product challenge is genuinely unsolved.
+              </p>
+              <p className="narrative">
+                Based in Dallas. Open to travel and relocation for the right role.
+              </p>
             </div>
 
           </div>

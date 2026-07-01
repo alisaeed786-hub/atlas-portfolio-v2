@@ -1,0 +1,25 @@
+---
+title: The Build
+slug: the-build
+category: Out of Scope
+date: 2024-06-19
+description: What I learned building a multi-agent system for the first time, and the one decision that changed everything.
+---
+
+The first version of ProductProof was a single prompt.
+
+I would paste a ticket in, ask the model to check it against some documentation I had also pasted in, and get back a list of potential issues. It worked well enough that I used it on real tickets. It was also impossible to trust.
+
+The problem was not the output. The output looked reasonable. The problem was that I could not tell which parts of the output were grounded in the documentation I had provided and which parts the model had generated on its own. They looked identical. That is the specific failure mode I was trying to solve — unverified assumptions presenting themselves as facts — and I had built a system that had the same problem.
+
+The shift to a multi-agent approach came from trying to separate those two things structurally rather than through prompting.
+
+If I gave one agent the job of extracting claims from the ticket, and a different agent the job of checking those claims against documentation, the verification step had a defined scope. It was not reasoning about the ticket from scratch. It was checking specific claims against specific source material. That is a narrower, more auditable task.
+
+The decision that changed how the whole system worked was much smaller than that. It was deciding not to pass the list of unverified claims to the rewrite agent.
+
+My original design passed everything — verified claims, assumed claims, the full audit — to the final agent so it could produce a better rewrite. In practice, the model would look at the assumed claims and either quietly include them in the rewrite or add hedging language around them. The output still felt authoritative. I had just moved the problem downstream.
+
+Removing the assumed claims from that agent's context entirely was the fix. If the rewrite agent cannot see what was assumed, it cannot fold assumptions into the output. The rewrite is only as strong as what was actually verified. That constraint is what makes the system trustworthy instead of just useful.
+
+I keep thinking about that as a design principle. The most important architectural decision I made was about what to take away, not what to add.

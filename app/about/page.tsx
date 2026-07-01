@@ -1,13 +1,13 @@
 'use client'
 
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Navbar from '@/components/Navbar'
 
 const SECTIONS = [
   { id: 'who', label: 'Who I am' },
-  { id: 'why', label: 'Why this work' },
   { id: 'how', label: 'How I think' },
-  { id: 'looking', label: 'What I want' },
+  { id: 'outside', label: 'Outside work' },
 ]
 
 export default function About() {
@@ -16,7 +16,7 @@ export default function About() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id) }),
-      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+      { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
     )
     SECTIONS.forEach(s => { const el = document.getElementById(s.id); if (el) observer.observe(el) })
     return () => observer.disconnect()
@@ -32,19 +32,26 @@ export default function About() {
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background: #15171D; color: #F2EEE7; font-family: system-ui, -apple-system, sans-serif; }
-        .layout { display: flex; min-height: 100vh; }
+        body { background: #0D0F14; color: #F2EEE7; font-family: system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; }
+        .layout { display: flex; min-height: 100vh; padding-top: 64px; }
 
         .sidebar {
-          width: 268px; flex-shrink: 0; position: fixed; top: 0; left: 0;
-          height: 100vh; padding: 44px 32px; display: flex; flex-direction: column;
+          width: 260px; flex-shrink: 0; position: fixed;
+          top: 64px; left: 0; height: calc(100vh - 64px);
+          padding: 40px 28px; display: flex; flex-direction: column;
           border-right: 1px solid rgba(255,255,255,0.07);
         }
-        .sb-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #6E7480; text-decoration: none; margin-bottom: 32px; transition: color 160ms ease; }
-        .sb-back:hover { color: #C9C3B6; }
-        .sb-section-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: #F2EEE7; margin-bottom: 48px; line-height: 1.1; }
+        .sb-section-title {
+          font-size: 24px; font-weight: 700; letter-spacing: -0.03em;
+          color: #F2EEE7; margin-bottom: 40px; line-height: 1.1;
+        }
         .sb-nav { display: flex; flex-direction: column; gap: 2px; }
-        .sb-link { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 7px; font-size: 13.5px; color: #6E7480; cursor: pointer; background: none; border: none; text-align: left; font-family: inherit; transition: color 160ms ease, background 160ms ease; }
+        .sb-link {
+          display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+          border-radius: 7px; font-size: 13.5px; color: #6E7480; cursor: pointer;
+          background: none; border: none; text-align: left; font-family: inherit;
+          transition: color 160ms ease, background 160ms ease;
+        }
         .sb-link:hover { color: #C9C3B6; background: rgba(255,255,255,0.03); }
         .sb-link.active { color: #F2EEE7; background: rgba(139,158,255,0.1); }
         .sb-dot { width: 5px; height: 5px; border-radius: 50%; background: #383C46; flex-shrink: 0; transition: background 160ms ease, box-shadow 160ms ease; }
@@ -52,36 +59,54 @@ export default function About() {
         .sb-footer { margin-top: auto; }
         .sb-name { font-size: 13px; color: #565B65; }
 
-        .main { margin-left: 268px; flex: 1; min-width: 0; }
-        .wrap { max-width: 720px; margin: 0 auto; padding: 0 60px; }
+        .main { margin-left: 260px; flex: 1; min-width: 0; }
+        .wrap { max-width: 680px; margin: 0 auto; padding: 0 52px; }
 
-        .block { min-height: auto; display: flex; flex-direction: column; padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .block { padding: 72px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .block:last-child { border-bottom: none; }
 
-        .eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #C9C3B6; opacity: 0.45; margin-bottom: 36px; }
-        .narrative { font-size: 18px; color: #C9C3B6; line-height: 1.85; letter-spacing: -0.005em; margin-bottom: 26px; max-width: 620px; }
+        .block-title {
+          font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+          text-transform: uppercase; color: #8B9EFF; margin-bottom: 28px;
+        }
+        .narrative { font-size: 17px; color: #C9C3B6; line-height: 1.85; letter-spacing: -0.005em; margin-bottom: 24px; max-width: 600px; }
         .narrative:last-child { margin-bottom: 0; }
         .narrative b { color: #F2EEE7; font-weight: 500; }
 
-        .contact-cta { margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.06); }
-        .contact-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #565B65; margin-bottom: 20px; }
+        .photo-block {
+          margin: 36px 0;
+          border-radius: 12px; overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+        }
+        .photo-block img { width: 100%; height: auto; display: block; }
+        .photo-caption {
+          font-size: 12px; color: #565B65; letter-spacing: 0.04em;
+          padding: 12px 0 0; text-align: center;
+        }
+
+        .contact-cta { margin-top: 40px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .contact-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #565B65; margin-bottom: 16px; }
         .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
-        .contact-link { font-size: 14px; font-weight: 500; padding: 10px 18px; border-radius: 7px; text-decoration: none; transition: background 160ms ease, border-color 160ms ease, color 160ms ease; }
-        .contact-link-primary { background: #8B9EFF; color: #15171D; }
+        .contact-link { font-size: 14px; font-weight: 500; padding: 10px 18px; border-radius: 7px; text-decoration: none; transition: all 160ms ease; }
+        .contact-link-primary { background: #8B9EFF; color: #0D0F14; }
         .contact-link-primary:hover { background: #A4B3FF; }
         .contact-link-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.14); color: #C9C3B6; }
         .contact-link-ghost:hover { border-color: rgba(255,255,255,0.28); color: #F2EEE7; }
 
-        @media (max-width: 900px) {
+        @media (max-width: 860px) {
           .sidebar { display: none; }
           .main { margin-left: 0; }
-          .wrap { padding: 0 24px; }
+          .wrap { padding: 0 20px; }
+          .block { padding: 52px 0; }
+          .narrative { font-size: 16px; }
         }
       `}</style>
 
+      <Navbar />
+
       <div className="layout">
         <aside className="sidebar">
-          <Link className="sb-back" href="/">&larr; Back</Link>
           <div className="sb-section-title">About</div>
           <nav className="sb-nav">
             {SECTIONS.map(s => (
@@ -90,48 +115,28 @@ export default function About() {
               </button>
             ))}
           </nav>
-          <div className="sb-footer">
-            <div className="sb-name">Ali Saeed</div>
-          </div>
+          <div className="sb-footer"><div className="sb-name">Ali Saeed</div></div>
         </aside>
 
         <main className="main">
           <div className="wrap">
 
             <div id="who" className="block">
-              <p className="eyebrow">Who I am</p>
+              <p className="block-title">Who I am</p>
               <p className="narrative">
-                I grew up in Dallas and studied Information Technology and Systems at UT Dallas. I wanted to understand how things were built, not just how they worked on the surface. That instinct has followed me into every role I have had since.
+                I studied Information Technology and Systems at UT Dallas, which gave me just enough technical grounding to be dangerous in a product role. I understood how systems were built, which meant I could sit with engineers and work through the details rather than hand over a document and hope for the best.
               </p>
               <p className="narrative">
-                I am a daily user of Claude, ChatGPT, and GitHub Copilot. Not because it is expected but because these tools have genuinely changed how I work and I am curious about where they are headed. ProductProof is the most direct expression of that curiosity. I built it because I wanted to know whether a problem I kept running into was actually solvable, and building it turned out to be the only way to find out.
+                I spent two and a half years working on transit technology programs in Washington before moving into healthtech, where I have spent the last two years building operational infrastructure at a startup that did not have any. Both environments taught me the same thing in different ways — the person who understands the most about what is actually happening is usually the most useful person in the room.
               </p>
-              <p className="narrative">
-                Outside of work I am interested in how complex systems fail, why some organizations move fast and others do not, and what separates the products people actually keep using from the ones that seem good on paper. I read a lot. I ask a lot of questions. I am told this is occasionally annoying and usually useful.
-              </p>
-            </div>
-
-            <div id="why" className="block">
-              <p className="eyebrow">Why this work</p>
-              <p className="narrative">
-                I got into product management because I enjoy the conversations and finding the missing piece of the puzzle. It is a thrill that no other role really gets.
-              </p>
-              <p className="narrative">
-                Every room has a missing piece. Something nobody has named yet that changes the whole picture once you find it. In a planning meeting it might be the assumption everyone is making that nobody has checked. In a customer call it might be the thing they keep describing in different ways because they do not have a word for it yet. In a system failure it might be the edge case that was never documented because nobody thought it would matter.
-              </p>
-              <p className="narrative">
-                Finding that piece and doing something useful with it is what I actually want to spend my time on. Product management is the role that makes that the job.
-              </p>
-              <p className="narrative">
-                What drew me specifically toward AI product work is that the missing piece problem gets harder and more interesting when the system you are building can generate its own confident-sounding output. You cannot just check whether the feature shipped. You have to define what correct looks like and build the systems to catch when it is not. I find that genuinely exciting in a way that I did not expect.
-              </p>
+              <div className="photo-block">
+                <img src="/ali-vietnam.png" alt="Ali in Vietnam" />
+              </div>
+              <p className="photo-caption">Ninh Binh, Vietnam</p>
             </div>
 
             <div id="how" className="block">
-              <p className="eyebrow">How I think</p>
-              <p className="narrative">
-                Product management is less about the product than most people think. It is about the room, the conversation, and the thing nobody has said yet that changes everything once it is named.
-              </p>
+              <p className="block-title">How I think</p>
               <p className="narrative">
                 You know that moment in a song when something is slightly off and you can feel it before you can name it? That is most of product management. You are sitting in a room full of people who are all playing their part and your job is to hear the whole thing at once and figure out where it is drifting before it falls apart.
               </p>
@@ -139,30 +144,28 @@ export default function About() {
                 I have been that person for five years. The most useful thing I have learned is that the answer is almost never in the room. It is in the data nobody pulled yet, the customer call nobody listened back to, the support ticket from six months ago that everyone forgot about. I go find it instead of debating what it probably is.
               </p>
               <p className="narrative">
-                I also believe you have to build the thing to really understand it. Reading about a problem is useful. Writing the requirements for a solution is better. Watching it break in production and figuring out why is the most useful thing of all.
+                I also believe you have to build the thing to really understand it. Reading about a problem is useful. Writing the requirements for a solution is better. Watching it break in production and figuring out why is the most useful of all.
               </p>
-            </div>
-
-            <div id="looking" className="block">
-              <p className="eyebrow">What I want</p>
-              <p className="narrative">
-                I am looking for AI product roles where the work is genuinely hard and the environment does not have all the answers yet. Forward deployed roles interest me specifically because they put you directly inside a customer's environment, which is where the real problems live.
-              </p>
-              <p className="narrative">
-                I do some of my best work when there is no playbook. Not because I enjoy chaos but because I am good at building structure in environments that do not have it yet. That is what I did at 10x Health, at HNTB, and with ProductProof. I would like to keep doing it at a company where AI is the core product, not an add-on.
-              </p>
-              <p className="narrative">
-                I am based in Dallas and open to travel and relocation for the right role. If something I have written or built sounds relevant to what you are working on, I would genuinely like to talk.
-              </p>
-
-              <div className="contact-cta">
-                <p className="contact-label">Get in touch</p>
-                <div className="contact-links">
-                  <a className="contact-link contact-link-primary" href="mailto:alisaeed786@gmail.com">Send me an email</a>
-                  <a className="contact-link contact-link-ghost" href="https://www.linkedin.com/in/ali-saeed1/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-                </div>
+              <div className="photo-block">
+                <img src="/ali-wife.png" alt="Ali and his wife" />
               </div>
+              <p className="photo-caption">Dallas, Texas</p>
             </div>
+
+            <div id="outside" className="block">
+              <p className="block-title">Outside work</p>
+              <p className="narrative">
+                Outside of work I travel as much as I can, usually with my wife who has better taste in restaurants than I do — though I hold my own in the kitchen.
+              </p>
+              <p className="narrative">
+                I am genuinely curious about how things work — not just software, but cities, systems, cultures. Most of my best trips have been to places where I had to figure things out without a plan. That instinct follows me into product work too.
+              </p>
+              <div className="photo-block">
+                <img src="/ali-edinburgh.png" alt="Ali in Edinburgh" />
+              </div>
+              <p className="photo-caption">Edinburgh, Scotland</p>
+            </div>
+
 
           </div>
         </main>

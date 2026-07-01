@@ -1,0 +1,23 @@
+---
+title: The Idea
+slug: the-idea
+category: Out of Scope
+date: 2024-06-12
+description: Where ProductProof came from, and why I almost did not build it.
+---
+
+The idea for ProductProof started with a ticket.
+
+Not a specific ticket — I cannot even remember which one it was. But I remember the feeling. It was in refinement, and I was reading through the acceptance criteria, and I had this moment where I realized that at least two of the items on the list were assumptions that nobody had actually verified against our documentation. They were written as facts. They were not facts.
+
+I brought it up. We spent twenty minutes tracking down whether our system actually supported what the ticket claimed it supported. It did not. The ticket had to be rewritten.
+
+That was not unusual. That was Tuesday.
+
+The thing I kept thinking about was not the time it took to catch it. It was the time it would have taken if we had not. If that ticket had gone into a sprint unreviewed, an engineer would have started building against an assumption, discovered the gap mid-sprint, and we would have spent three times as long untangling it.
+
+I started wondering whether that process — reading a ticket, checking its claims against your own documentation, flagging what is verified versus assumed — was something a system could do faster than a human.
+
+I almost did not build it because I was not sure it was a real problem or just a Tuesday problem. The thing that convinced me was realizing I could not remember a single refinement session where this had not come up in some form.
+
+That seemed like enough of a signal to build something.

@@ -1,10 +1,12 @@
 'use client'
 
 import Link from 'next/link'
+import Navbar from '@/components/Navbar'
 
 export default function Projects() {
   return (
     <>
+      <Navbar />
       <style>{`
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #15171D; color: #F2EEE7; font-family: system-ui, -apple-system, sans-serif; }
@@ -73,6 +75,12 @@ export default function Projects() {
           <Link className="sb-back" href="/">&larr; Back</Link>
           <div className="sb-section-title">Projects</div>
           <p className="sb-section-sub">Things I have built. Each one started as a problem I kept running into.</p>
+          <div style={{ marginTop: 24, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            <p style={{ fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#565B65', marginBottom: 12 }}>Case Studies</p>
+            <Link href="/work/productproof" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, color: '#8B9EFF', textDecoration: 'none', padding: '8px 0' }}>
+              <span style={{ fontSize: 10 }}>→</span> ProductProof
+            </Link>
+          </div>
           <div className="sb-footer">
             <div className="sb-name">Ali Saeed</div>
           </div>
