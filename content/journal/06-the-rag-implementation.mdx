@@ -1,0 +1,17 @@
+---
+title: The RAG Implementation
+slug: the-rag-implementation
+category: Build Notes
+date: 2026-04-14
+description: How ProductProof retrieves relevant documentation without a vector database, and why OR logic made verification more accurate.
+---
+
+RAG stands for Retrieval Augmented Generation. When I first read those words I had no idea what they meant. In practice it is simpler than the name: instead of dumping all your documentation into a prompt, you search for the relevant parts first, then pass only what is relevant to the model.
+
+Why this matters comes down to context. Language models have limits on how much text they can process at once. More importantly, when you give a model too much context, quality drops. Relevant information gets buried in irrelevant information and the model loses focus. RAG makes the retrieval step explicit. Find the right information first. Then reason about it.
+
+For ProductProof, the source material is a team's Confluence documentation. When a ticket comes in, Agent 00 generates search terms and Agent 02 queries the Confluence API using CQL — Confluence Query Language — to pull relevant pages. There is no separate indexing step or vector database. The system uses Confluence's native search directly, which means it works against whatever the team has already written without requiring any additional setup.
+
+The key decision in the search layer was OR logic between search terms instead of phrase matching. If a ticket mentions "SMS notification" and the search requires both words together as a phrase, you miss every page that discusses notifications and SMS in separate sentences but in the same context. OR logic returns more candidates. That introduces noise, but Agent 02 handles the filtering — only passages that can be directly cited as supporting a specific claim count toward verification. The wider net at the search step makes the verification more accurate, not less.
+
+What building this taught me is that the source material quality sets the ceiling for everything else. If the documentation is thin, the verification will be thin. A claim that comes back as assumed might not mean the ticket is wrong. It might mean the team has never written that decision down. ProductProof does not just verify tickets. It surfaces documentation gaps as a side effect of doing its primary job, which turned out to be almost as useful as the verification itself.

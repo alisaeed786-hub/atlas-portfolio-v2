@@ -1,0 +1,17 @@
+---
+title: Verification vs Generation
+slug: verification-vs-generation
+category: Build Notes
+date: 2026-04-30
+description: Most AI tools generate. ProductProof verifies. The difference in failure modes is what makes one trustworthy and the other impressive.
+---
+
+Most AI tools that touch product work are generation tools. You give them context, they produce output. A requirements document, a user story, a first draft of a PRD. The output is always something new, constructed from what you provided.
+
+The problem with generation for product work is that there is no ground truth to check against. The model produces something that sounds correct. You read it and it feels complete. But "sounds correct" and "is correct" are not the same thing, and in product work the gap between them is exactly where requirements defects live.
+
+Verification starts from the opposite direction. Instead of asking what this ticket should say, it asks whether what the ticket already says is actually supported by what the team has documented. The model is not constructing anything new. It is checking something that already exists. Every judgment it produces is traceable back to a specific passage in the documentation.
+
+The failure modes are completely different. A generated ticket can be wrong in ways that are invisible until engineering finds the problem mid-sprint. A verified ticket can only come back as ready if the documentation actually supports it. When it does not, the system tells you exactly which claims failed and why, rather than letting them slip through as reasonable-sounding requirements.
+
+The broader argument is this. AI is most valuable in product work not when it is generating content, but when it is checking work against a known source of truth. Generation is impressive. Verification is trustworthy. For decisions that determine what gets built and when, trustworthy is worth more.

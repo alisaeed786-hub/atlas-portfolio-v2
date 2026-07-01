@@ -19,9 +19,9 @@ export default async function JournalEntry({
   if (!entry) notFound()
   const { prev, next } = getAdjacentEntries(slug)
 
-  const catStyle = entry.category === 'Out of Scope'
+  const catStyle = entry.category === 'Off the Clock'
     ? { background: 'rgba(139,158,255,0.1)', color: '#8B9EFF' }
-    : entry.category === 'Under the Hood'
+    : entry.category === 'Build Notes'
     ? { background: 'rgba(111,214,168,0.1)', color: '#6FD6A8' }
     : { background: 'rgba(242,182,109,0.1)', color: '#F2B66D' }
 

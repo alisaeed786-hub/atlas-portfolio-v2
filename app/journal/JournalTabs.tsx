@@ -4,12 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { JournalEntry } from '@/lib/journal'
 
-type Tab = 'All' | 'Out of Scope' | 'Under the Hood' | 'PM in AI'
-const TABS: Tab[] = ['All', 'Out of Scope', 'Under the Hood', 'PM in AI']
+type Tab = 'All' | 'Off the Clock' | 'Build Notes' | 'PM in AI'
+const TABS: Tab[] = ['All', 'Off the Clock', 'Build Notes', 'PM in AI']
 
 function getCatStyle(category: JournalEntry['category']) {
-  if (category === 'Out of Scope') return { background: 'rgba(139,158,255,0.1)', color: '#8B9EFF' }
-  if (category === 'Under the Hood') return { background: 'rgba(111,214,168,0.1)', color: '#6FD6A8' }
+  if (category === 'Off the Clock') return { background: 'rgba(139,158,255,0.1)', color: '#8B9EFF' }
+  if (category === 'Build Notes') return { background: 'rgba(111,214,168,0.1)', color: '#6FD6A8' }
   return { background: 'rgba(242,182,109,0.1)', color: '#F2B66D' }
 }
 

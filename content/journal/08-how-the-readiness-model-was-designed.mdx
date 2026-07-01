@@ -1,0 +1,21 @@
+---
+title: How the Readiness Model Was Designed
+slug: how-the-readiness-model-was-designed
+category: Build Notes
+date: 2026-05-18
+description: The first version was a score. It was useless. Here is what replaced it and why.
+---
+
+The first version of the readiness output was a score.
+
+I would get back a number — 74, or 61, or 88 — representing how ready the ticket was. Clean. Objective. It felt like it meant something.
+
+It was useless.
+
+A score does not tell you what to do next. It does not tell you which claim to go check, which stakeholder to ask, or whether the ticket is one conversation away from ready or fundamentally broken. A 61 could mean two fixable gaps or eight compliance violations. The number gave you no way to tell which one you were looking at.
+
+The readiness model replaced the score with a verdict. Ready. Needs Review. Not Ready. The verdict is driven by a count of how many claims could not be verified, but it is presented as a decision rather than a measurement. Ready means bring this to planning. Needs Review means there are specific things to address first. Not Ready means this ticket should not go anywhere near a sprint in its current state.
+
+The thresholds were set empirically. I ran the same tickets through at different cutoff values and compared the system's verdict against what an experienced PM would conclude after manual review. The current thresholds — zero to three unverified claims for Ready, four to six for Needs Review, seven or more for Not Ready — held up consistently across six test tickets spanning all three verdict tiers. That is a small sample and I treat the thresholds as a starting point, not a fixed standard. The right calibration will shift depending on team size, documentation maturity, and how risk-tolerant the organization is about unverified claims reaching engineering.
+
+The readiness model turned out to be the most important UX decision in the whole system. The verification is the engine. The verdict is what makes the output something a PM can act on without having to interpret a number first.

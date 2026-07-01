@@ -20,7 +20,11 @@ export default function Projects() {
         .sb-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #6E7480; text-decoration: none; margin-bottom: 32px; transition: color 160ms ease; }
         .sb-back:hover { color: #C9C3B6; }
         .sb-section-title { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; color: #F2EEE7; margin-bottom: 16px; line-height: 1.1; }
-        .sb-section-sub { font-size: 14px; color: #6E7480; line-height: 1.6; }
+        .sb-nav { display: flex; flex-direction: column; gap: 2px; }
+        .sb-nav-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #565B65; padding: 0 10px; margin-bottom: 4px; margin-top: 32px; }
+        .sb-link { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 7px; font-size: 13.5px; color: #6E7480; text-decoration: none; transition: color 160ms ease, background 160ms ease; }
+        .sb-link:hover { color: #C9C3B6; background: rgba(255,255,255,0.03); }
+        .sb-dot { width: 5px; height: 5px; border-radius: 50%; background: #383C46; flex-shrink: 0; }
         .sb-footer { margin-top: auto; }
         .sb-name { font-size: 13px; color: #565B65; }
 
@@ -74,13 +78,15 @@ export default function Projects() {
         <aside className="sidebar">
           <Link className="sb-back" href="/">&larr; Back</Link>
           <div className="sb-section-title">Projects</div>
-          <p className="sb-section-sub">Things I have built. Each one started as a problem I kept running into.</p>
-          <div style={{ marginTop: 24, paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-            <p style={{ fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#565B65', marginBottom: 12 }}>Case Studies</p>
-            <Link href="/work/productproof" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, color: '#8B9EFF', textDecoration: 'none', padding: '8px 0' }}>
-              <span style={{ fontSize: 10 }}>→</span> ProductProof
+          <div className="sb-nav-label">ProductProof</div>
+          <nav className="sb-nav">
+            <Link className="sb-link" href="/work/productproof">
+              <span className="sb-dot" />Overview
             </Link>
-          </div>
+            <Link className="sb-link" href="/work/productproof/docs">
+              <span className="sb-dot" />Technical Docs
+            </Link>
+          </nav>
           <div className="sb-footer">
             <div className="sb-name">Ali Saeed</div>
           </div>
@@ -119,7 +125,7 @@ export default function Projects() {
                 <span className="tag">Vercel</span>
               </div>
               <div className="project-links">
-                <Link className="project-link project-link-primary" href="/work/productproof">Read the case study</Link>
+                <Link className="project-link project-link-primary" href="/work/productproof">View project</Link>
                 <a className="project-link project-link-secondary" href="https://healthy-humans.vercel.app" target="_blank" rel="noopener noreferrer">Try the live demo</a>
               </div>
             </div>

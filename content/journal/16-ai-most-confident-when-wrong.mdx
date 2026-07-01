@@ -1,0 +1,21 @@
+---
+title: AI Is Most Confident When It Is Most Wrong and That Should Scare You
+slug: ai-most-confident-when-wrong
+category: PM in AI
+date: 2026-05-20
+description: MIT found AI uses 34% more confident language when it is wrong than when it is right. The product implications are serious.
+---
+
+MIT researchers found in 2025 that AI models use 34% more confident language when generating incorrect information than when generating correct information.
+
+Read that sentence again. The wronger the AI is, the more certain it sounds.
+
+This is not a quirk of one model or one use case. It is a structural characteristic of how large language models generate text. They are optimized to produce language that sounds coherent and authoritative. Coherent and authoritative is not the same as accurate. The model does not know the difference. It patterns to what confident, well-formed text looks like, independent of whether the content is true.
+
+The product implications are serious. If you are building a product where AI generates output that users act on, you are building on top of a system that is most persuasive exactly when it is most wrong. The user reads the output, it sounds definitive, they trust it. That trust is inversely correlated with accuracy.
+
+Stanford found that large language models hallucinate between 69% and 88% of the time on specific legal queries. Lexis+ AI, a purpose-built legal tool from a company with significant AI investment, produced incorrect information more than 17% of the time. Westlaw's AI research feature hallucinated more than 34% of the time. These are not general-purpose chatbots used carelessly. These are domain-specific products deployed in a field where being wrong has real legal consequences.
+
+I am not writing this to argue that AI should not be used in high-stakes domains. I am writing it because the answer to this problem is not better models. It is a verification layer built into the product before it ships. Define what correct looks like. Build the system to check against that definition. Make the gaps visible rather than hiding them behind confident-sounding language.
+
+The industry is slowly learning this. Most products are still shipping without it.

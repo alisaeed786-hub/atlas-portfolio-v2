@@ -1,0 +1,19 @@
+---
+title: What the Corpus Actually Contains and Why It Matters
+slug: what-the-corpus-actually-contains
+category: Build Notes
+date: 2026-06-01
+description: ProductProof is only as good as the documentation it checks against. That turns out to be the most important constraint in the system.
+---
+
+ProductProof is only as good as the documentation it checks against.
+
+The implications of that are bigger than they sound. When I ran the first tests against thin source material — a handful of Confluence pages with high-level product descriptions — the system flagged almost everything as assumed. Not because the tickets were badly written. Because the documentation did not cover the specifics the tickets were claiming.
+
+The source material needs to contain the right kind of documentation. High-level strategy pages are not useful for verification. What works is the specific, operational documentation that captures decisions the team has actually made: which APIs exist and what they can do, which compliance rules apply to which data types, which features are shipped versus planned, which behaviors are explicitly out of scope and why.
+
+When that documentation exists, ProductProof catches real problems. When it does not, ProductProof tells you that you have a documentation problem — which is a different kind of value but still useful.
+
+What I did not expect was how consistently that signal appeared. Every time a legitimate claim in a ticket came back as assumed, it meant the team had made a decision that was never written down. Those gaps are a specific kind of technical debt: the kind that produces misaligned tickets, surprised engineers, and requirements defects caught after the work has already started.
+
+ProductProof was built to verify tickets. What it does as a side effect is surface, on demand, whether the team's institutional knowledge is actually captured somewhere that can be checked. That turned out to matter as much as the verification itself.

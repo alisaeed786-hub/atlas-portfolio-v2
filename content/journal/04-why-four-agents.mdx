@@ -1,0 +1,25 @@
+---
+title: Why Four Agents Instead of One
+slug: why-four-agents
+category: Build Notes
+date: 2026-03-12
+description: One model doing four jobs produces confident, wrong output. Here is why I split the work.
+---
+
+The first version of ProductProof was one prompt.
+
+I dropped in the ticket, dropped in the documentation, and asked it to tell me what was wrong. It came back with something that looked reasonable. Structured, confident, formatted. The problem was that it was making things up. Not in an obvious way. It was not inventing requirements from nowhere. It was softening the edges. A claim with no documentation behind it would come back as "partially verified" or "likely consistent with the documented approach." Hedging dressed up as analysis.
+
+What I did not understand yet was that I was asking one model to do four completely different jobs at the same time. Read the ticket. Search the documentation. Compare the two. Rewrite the output. Each of those requires a different kind of attention. When you give them all to one model at once, it optimizes for producing something that sounds complete rather than something that is actually correct.
+
+So I split them up.
+
+Agent 00 translates the language of the ticket into search terms the documentation can actually match against. This matters more than it sounds. A ticket written by a PM and documentation written by an engineer use different vocabulary for the same concepts. A ticket that says "the system will notify the user" needs to search for "notification" and "alert" and "message delivery" — not the literal phrase. Agent 00 bridges that gap. If the translation is wrong, every verification downstream is working with the wrong evidence.
+
+Agent 01 checks the ticket against itself before any documentation gets involved. Is this a real user story? Are the acceptance criteria testable? Is the scope defined at all? These structural checks catch problems that have nothing to do with documentation and would waste the verification step if left unaddressed.
+
+Agent 02 does the actual verification. Every significant claim in the ticket gets checked against retrieved documentation. A claim is only marked verified if a specific passage in the source material can be directly cited as supporting it. Not "this seems consistent." A citable source. Everything else is assumed, even claims that sound completely reasonable.
+
+Agent 03 rewrites the ticket. What it never sees is explained in the next entry.
+
+Four agents, four jobs. The system is slower than one prompt. It is also something one prompt cannot be: inspectable. You can look at what each step produced and understand exactly why the output came out the way it did.

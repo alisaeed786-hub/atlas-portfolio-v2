@@ -1,0 +1,21 @@
+---
+title: Why the Rewrite Agent Never Sees the Assumed List
+slug: why-rewrite-agent-never-sees-assumed
+category: Build Notes
+date: 2026-03-27
+description: Passing more context to a model does not always produce better output. Sometimes the right move is to take information away.
+---
+
+When I moved from one agent to four, the obvious move was to pass everything forward at each step. Agent 02 produces a verified list and an assumed list. Agent 03 gets both and rewrites the ticket. More context, better output. That is how most people think about language models.
+
+It was the wrong call.
+
+The first time I ran it this way, Agent 03 produced a beautifully written ticket that treated every assumed claim as settled fact. The instructions said to use only verified claims. The model followed them in the letter and violated them in spirit.
+
+Here is a real example of what that looked like. The original ticket claimed "the system will send an SMS notification when a lab result is available." Agent 02 flagged this as assumed — no documentation confirmed SMS was supported. Agent 03 received both lists with instructions to use only verified claims. It rewrote the acceptance criteria to say "given a lab result is available, when the notification is triggered, then the patient receives timely confirmation through the appropriate channel." The SMS claim was gone. But "appropriate channel" was doing the same work — implying a capability that was never confirmed. Technically compliant. Actually wrong.
+
+The reason this happens is not that models ignore instructions. It is that transformer models attend to everything in their context window. Information competes with instructions for influence over the output, and when an assumed claim appears in the prompt, it carries weight regardless of what the surrounding text says about it. Telling a model "here is the assumed list, do not use it" is a losing battle because the information itself is still present and the model will find ways to incorporate it.
+
+The fix was to remove the assumed list from Agent 03's context entirely. It never sees what was not verified. It has no access to the claims that failed. The rewrite is trustworthy not because the model is disciplined, but because the information it would need to go wrong is not there.
+
+That shifted how I think about AI system design. The question is not "how do I instruct the model to behave correctly?" It is "what should this model never have access to?" Those are different problems with different solutions, and conflating them is how AI systems produce confident, wrong output.

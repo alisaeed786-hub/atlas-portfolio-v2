@@ -189,6 +189,11 @@ export default function ProductProofCaseStudy() {
               </button>
             ))}
           </nav>
+          <div style={{ marginTop: 28, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
+            <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#565B65', marginBottom: 10 }}>ProductProof</p>
+            <Link href="/work/productproof" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#AAB4C0', textDecoration: 'none', padding: '7px 0', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>Overview</Link>
+            <Link href="/work/productproof/docs" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#AAB4C0', textDecoration: 'none', padding: '7px 0' }}>Technical Docs</Link>
+          </div>
           <div className="sb-footer">
             <a className="sb-cta" href="https://productproof-demo.vercel.app" target="_blank" rel="noopener noreferrer">Try the live demo</a>
             <a className="sb-cta-ghost" href="https://github.com/alisaeed786-hub/healthy-humans" target="_blank" rel="noopener noreferrer">View the code</a>

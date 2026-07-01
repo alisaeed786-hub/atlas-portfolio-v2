@@ -1,0 +1,19 @@
+---
+title: We Are Building Agents Now and the Old PM Playbook Does Not Apply
+slug: building-agents
+category: PM in AI
+date: 2026-06-03
+description: An AI feature responds. An AI agent acts. That difference requires a completely different set of PM instincts.
+---
+
+There is a meaningful difference between building an AI feature and building an AI agent. Most product teams have figured out the first one. Almost none have figured out the second.
+
+An AI feature responds to a user action. A user asks a question, the AI answers. A user uploads a document, the AI summarizes it. The interaction is bounded, the output is contained, and when something goes wrong the failure is visible and localized.
+
+An AI agent is different in kind, not just degree. An agent monitors signals, makes decisions, executes multi-step workflows, and triggers other systems — often without a human in the loop at every step. It does not just respond. It acts.
+
+Building a product around an agent requires a completely different set of PM instincts. You are not defining what a feature does when a user clicks a button. You are defining permission boundaries — what the agent can do autonomously versus where it needs human approval. You are thinking about failure modes across multi-step sequences, where a chain of individually correct decisions produces an incorrect outcome. You are building governance into the architecture from the start, because adding it after something goes wrong is much more expensive than getting it right the first time.
+
+I learned this firsthand building the travel agent system I wrote about in Out of Scope. The inbox monitoring, the purchase trigger, the itinerary generator chained together — that system works because I defined the handoffs carefully and made sure each agent had a clear scope. When one step fails, it fails visibly without taking the whole chain down.
+
+That kind of thinking does not come from reading about agents. It comes from building one, watching it break, and figuring out why. If your team is planning to ship agent-based features in the next year, the time to develop that instinct is now, not after the first production incident.
