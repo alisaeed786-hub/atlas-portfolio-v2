@@ -224,11 +224,11 @@ export default function Landing() {
         {/* Hero */}
         <div className="hero">
           <div className="hero-text">
-            <h1 className="hero-big-line">I find the thing<br />nobody said yet.</h1>
+            <h1 className="hero-big-line">Vision is the strategy.<br />Verification is the discipline.</h1>
             <div className="hero-name">Ali Saeed</div>
             <div className="hero-role">AI Product Manager</div>
             <p className="hero-body">
-              Five years building operational infrastructure at healthtech and transit companies. Now building AI systems that solve the problems I kept running into along the way.
+              Product managers are asked to carry other people&apos;s ideas across the finish line. The hard part is not the execution — it is knowing which ideas are worth carrying. I read conviction. I can tell the difference between a feature that solves a real problem and one that exists because someone had air time in a meeting. I back that instinct with customer research and impact data. Then I decide what gets built, and I build it to last.
             </p>
             <div className="hero-actions">
               <a className="hero-btn-primary" href="https://productproof-demo.vercel.app" target="_blank" rel="noopener noreferrer">
