@@ -87,6 +87,12 @@ export default function Projects() {
               <span className="sb-dot" />Technical Docs
             </Link>
           </nav>
+          <div className="sb-nav-label">SmartKartAI</div>
+          <nav className="sb-nav">
+            <Link className="sb-link" href="/work/smartkartai">
+              <span className="sb-dot" />Overview
+            </Link>
+          </nav>
           <div className="sb-footer">
             <div className="sb-name">Ali Saeed</div>
           </div>
@@ -127,6 +133,40 @@ export default function Projects() {
               <div className="project-links">
                 <Link className="project-link project-link-primary" href="/work/productproof">View project</Link>
                 <a className="project-link project-link-secondary" href="https://healthy-humans.vercel.app" target="_blank" rel="noopener noreferrer">Try the live demo</a>
+              </div>
+            </div>
+
+            <div className="project-card">
+              <div className="project-status"><span className="project-dot" />Live Product</div>
+              <div className="project-title">SmartKartAI</div>
+              <div className="project-tagline">The cheapest grocery run, planned for you</div>
+              <p className="project-desc">
+                An AI-powered shopping list optimizer that learns your preferences and finds the cheapest store for your personalized grocery list. It turns a static list into a living plan, comparing prices across stores and adapting recommendations as your habits change, so every trip costs less without extra effort.
+              </p>
+              <div className="project-meta">
+                <div>
+                  <div className="meta-label">Problem</div>
+                  <div className="meta-value">Grocery lists are static and ignore where prices are actually lowest</div>
+                </div>
+                <div>
+                  <div className="meta-label">Approach</div>
+                  <div className="meta-value">Preference learning plus cross-store price comparison</div>
+                </div>
+                <div>
+                  <div className="meta-label">Stack</div>
+                  <div className="meta-value">Next.js, AI-powered recommendations, Vercel</div>
+                </div>
+              </div>
+              <div className="tags">
+                <span className="tag">AI recommendations</span>
+                <span className="tag">Personalization</span>
+                <span className="tag">Price comparison</span>
+                <span className="tag">Next.js</span>
+                <span className="tag">Vercel</span>
+              </div>
+              <div className="project-links">
+                <Link className="project-link project-link-primary" href="/work/smartkartai">View project</Link>
+                <a className="project-link project-link-secondary" href="https://smartkartai-six.vercel.app" target="_blank" rel="noopener noreferrer">Try the live demo</a>
               </div>
             </div>
 
